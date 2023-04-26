@@ -1,0 +1,30 @@
+// OS모듈 : 운영체제 정보 모음
+const os = require('os'); -> 우리가 안만들었지만 쓸 수 있게 제공해줌
+console.log(os.cpus()) => 나의 CPU 정보를 출력해줌, 내 cpu가 몇개있는지
+ㄴ 나중에 서버를 띄울 때 노드가 싱글스레드인데 그럼 cpu를 하나밖에 사용 안해줌
+ㄴ 효율적으로 서버를 구성하려면 나의 코어 개수만큼 띄우면 됨 
+이 코어 개수를 알아내기 위해 사용
+ㄴ 난 코어 8개 있음
+
+// PATH모듈 : 경로처리할 때 사용하는 모듈
+const path = require('path');
+path.join(__dirname, '..', '/var.js'); // 문자 합쳐줌
+ㄴ 경로 알려줌 C:\Dev50\var.js
+path.resolve(__dirname, '..', '/var.js') // 절대경로 C:\var.js
+
+< * 이외 함수들 * >
+const string = __filename
+path.sep : /
+path.delimiter : ;
+path.dirname(string) : C:\Users\Happy
+path.extname(string) : .js
+path.basename(string) : path.js
+path.basename(string, path.extname(string)) : path
+path.parse() : root, dir, vase, ext, name를 객체로 반환
+path.format({ : 해당 값들을 하나로 합쳐줌
+    dir: '',
+    name: '',
+    ext: '',
+})
+path.normalize('C:///users\\\\\zerocho); : C:\users\zerocho로 반환
+ㄴ path모듈 메서드 자주 쓰니 읽어보기

@@ -1,0 +1,23 @@
+/// Process 관련 함수
+.version
+.arch : 현재 아키텍처 정보
+.pid : 프로세스 강제 종료
+*** .cwd : node 명령어 실행 경로, 파일 경로 알아낼 때
+
+// process.env : 시스템 환경변수
+>> 비밀키(데이터베이스 비밀번호, 서드파티 앱 키 등)를 보관하는 용도
+const secretId = process.env.SECRET_ID;
+const secretCode = process.env.SECRET_CODE;
+>> 일부 환경 변수는 노드 실행시 영향을 미침
+예시) NODE_OPTIONS(노드 실행 옵션), UV_THREADPOOL_SIZE(스레드풀 개수)
+- max-old-space-size는 노드가 사용할 수 있는 메모리를 지정하는 옵션
+NODE_OPTIONS = --max-old-space-size=8192(메모리 용량 올리기)
+UV_THREADPOOL_SIZE=8
+(백그라운드 동시에 많이 돌아간다해도 동시돌아가는 개수가 4개정도인데 
+4개만 하면 부족함 그럴 때 이걸로 늘려줌)
+
+// process.nextTick(콜백함수) : 새치기 하는 함수 다른 콜백 함수들보다 가장 먼저 실행됨
+
+// process.exit(0) : node process 종료, 1이면 에러가 있는 것
+ㄴ 에러 알리고 종료하기 위해 사용
+

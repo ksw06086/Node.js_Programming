@@ -9,10 +9,12 @@ console.table({{name : '제로'}}) : 테이블 이쁘게 출력해줌
 
 // 3. 타이머 메서드
 setTimeout(콜백, 밀리초) : 주어진 밀리초(1000분의 1초) 이후에 콜백함수를 실행합니다.
-setInterval(콜백, 밀리초) : 주어진 밀리초마다 콜백 함수를 반복 실행합니다.
+setInterval(콜백, 밀리초) : 주어진 밀리초마다 콜백 함수를 반복 실행합니다., 변수에 넣어주어야 함
 setImmediate(콜백 함수) : 콜백 함수를 즉시 실행합니다.
+ㄴ setTimeout 0을 할 바에는 setImmediate를 사용해야함
+ㄴ 특정 코드를 동시에 실행할 수 있어서 사용하는 것
 
-clearTimeout(아이디) : setTimeout을 취소합니다.
-clearInterval(아이디) : setInterval을 취소합니다.
-clearImmediate(아이디) : setImmediate을 취소합니다.
+clearTimeout(변수) : setTimeout을 취소합니다.
+clearInterval(변수) : setInterval을 취소합니다.
+clearImmediate(변수) : setImmediate을 취소합니다.
 
