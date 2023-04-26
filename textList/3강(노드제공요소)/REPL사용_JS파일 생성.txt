@@ -1,0 +1,9 @@
+/// REPL
+>> REPL이라는 콘솔을 제공함
+>> R(Read), E(Evaluate), P(Print), L(Loop)
+ㄴ cmd에서 node 명령어를 치면 js사용가능함
+
+// JS파일 생성
+ㄴ 넌 알고 있다 방법을
+ㄴ VSCode에서 Terminal보이고 cmd console창 띄우는 법
+ㄴ 1. ctrl + ` -> terminal -> powershell=>command

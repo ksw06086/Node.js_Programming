@@ -1,0 +1,92 @@
+// node.js시 자주 쓰는 프론트엔드 자바스크립트
+// 1. AJAX
+ㅁ AJAX 요청 시 Axios 라이브러리 사용하는게 편함
+ㅁ HTML에 아래 스크립트를 추가하면 사용 가능
+<script src = "https://unpkg.com/axios/dist/axios.min.js"></script>
+
+ㅁ GET요청 보내기
+<script>
+    // 프로미스 기반 코드라 async/await 사용 가능
+    axios.get(`https://www.zerocho.com/api/get`)
+        .then((result) => {
+            console.log(result);
+            console.log(result.data);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+    (async () => {
+        try {
+            const result = await axios.get(`https://www.zerocho.com/api/get`);
+            console.log(result);
+            console.log(result.data);
+        } catch (err) {
+            console.log(err);
+        }
+    });
+</script>
+
+ㅁ POST 요청 보내기(로그인 회원가입 시 사용)
+<script>
+    (async () => {
+        try {
+            const result = await axios.post(`https://www.zerocho.com/api/post/json`, {
+                name : `zerocho`,
+                birth : 1994,
+            });
+            console.log(result);
+            console.log(result.data); // {}
+        } catch (err) {
+            console.log(err);
+        }
+    });
+</script>
+
+/// 2. FormData : axios는 이걸로 이미지 파일 동영상 전송해야함
+>> HTML form 태그에 담긴 데이터를 AJAX 요청으로 보내고 싶은 경우
+>> FormData 메서드
+ㅁ Append로 데이터 하나씩 추가
+ㅁ Has로 데이터 존재 여부 확인
+ㅁ Get으로 데이터 조회
+ㅁ getAll으로 데이터 모두 조회
+ㅁ delete로 데이터 삭제
+ㅁ set으로 데이터 수정
+====> image1.png 참고
+>> FormData POST 요청 보내기
+ㅁ Axios의 data 자리에 formData를 넣어서 보내면 됨
+((async () => {
+    try{
+        const formData = new FormData();
+        formData.append(`name`, `zerocho`);
+        formData.append(`birth`, 1994);
+        const result = await axios.post(`https://www.zerocho.com/api/post/formdata`, formData);
+        console.log(result);
+        console.log(result.data);
+    } catch(err) {
+        console.log(err.message);
+    }
+})();
+
+/// 3. encodeURIComponent, decodeURIComponent
+>> 가끔 주소창에 한글 입력하면 서버가 처리하지 못하는 경우 발생
+ㅁ encodeURIComponent로 한글 감싸줘서 처리
+(async () => { => Get방식
+    try{
+        const result = await axios.get(`https://www.zerocho.com/api/search/${encodeURIComponent('노드')}`);
+        console.log(result);
+        console.log(result.data);
+    } catch(err) {
+        console.log(err.message);
+    }
+})();
+>> 노드를 encodeURIComponent하면 가져올 때 한글로 안가져옴
+ㅁ decodeURIComponent로 서버에서 한글을 해석해주어야 함
+decodeURIComponent(값);
+
+/// 4. data attribute와 dataset
+>> HTML과 JS간의 데이터 교환, 3번째 단어부터 -가 사라지고 앞글자가 대문자가 됨
+dataset.monthSalary = 10000(JS) -> data-month-salary = "10000"(HTML)
+<ul>
+    <li data-id="1" data-month-salary="10000">dkdk</li>
+</ul>
