@@ -1,0 +1,31 @@
+/// *** ECMAScript 모듈 *** => ES모듈
+// ES모듈 : .mjs / CommonJS모듈 : .cjs
+export const odd = '홀수입니다.';
+export default checkOddOrEven;
+import [odd] from './var.mjs'; => import는 반드시 최상단에 있어야 함
+import checkNumber from './func.mjs';
+
+// module.exports와 export default의 차이
+>> module.exports => 해당 키값으로 값이 들어옴
+>> export default => default 키값으로 값이 들어오게 됨
+
+// .mjs를 사용하기 불편할 경우
+>> package.json에 "type": "module" 속성을 넣으면 .js로 사용 가능
+>> CommonJS 모듈과는 다르게 import 시 파일 경로에서 js, mjs같은 확장자는 생략할 수 없음
+>> 폴더 내부에서 index.js도 생략할 수없음.
+
+// CommonJS VS ECMAScript
+===> image1.png 참조
+*** CommonJS : async function f() { await a(); }
+*** ECMAScript : await a(); => import 하면서 이 await을 다 resolve해서 됨
+
+/// *** 다이나믹임포트 ***
+// ES모듈
+const a = await import('./func.mjs); => import는 Promise이기에 await을 넣어주어야 한다.
+
+// ES모듈, CommonJS : __filename, __dirname 사용 차이
+// CommonJS
+console.log(__filename);
+console.log(__dirname);
+// ES모듈
+console.log(import.meta.url);
