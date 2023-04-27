@@ -1,0 +1,21 @@
+/// *** URL ***
+// 현재 URL처리 방식을 웹표준(WHATWG) 방식으로만 사용함
+"https://user:pass@sub.host.com:8080/p/a/t/h?query=string#hash"
+protocol : "https:
+username : user
+password : pass
+hostname : sub.host.com
+port : 8080
+host,origin : sub.host.com:8080
+pathname : /p/a/t/h
+search : 쿼리스트링
+searchParams : search 부분을 객체로 출력해줌
+hash : #hash - 서버는 인식을 못하고 브라우저만 인식함
+
+/// *** DNS ***
+// 도메인을 통해 IP나 DNS 정보를 얻고자 할 때 사용함
+dns.lookup('github.com'); : IP주소를 가져옴
+dns.resolve('github.com','A');   : 도메인으로 페이지 또는 IP주소 연결을 원할 때
+dns.resolve('github.com', 'MX'); : 메일 서버(메일 보내고 싶을 때)
+dns.resolve('www.github.com', 'CNAME'); : 앞에 www를 붙여도 똑같은 페이지로 이동하고 싶을 때
+

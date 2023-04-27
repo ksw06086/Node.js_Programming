@@ -1,0 +1,41 @@
+// crypto(단방향 암호화) : 멀티스레드로 돌아감
+비밀번호는 엄밀히 말하면 암호화는 아니고 해시기법인 것
+ㄴ 평문을 암호같이 만드는데 이걸 평문으로 만들 수가 없음 그게 너무 어려움
+ㄴ asdfs의 암호화가 enen이라면 asdfs의 암호화값은 언제나 enen이 됨
+ㄴ 최신 해시 알고리즘으로 해도 몇십년이 걸림(그래서 해커가 시도를 안함)
+ㄴ console.log내용 보고 하거나, 프론트에서 키보드 해킹해서 찾아냄
+
+<Hash>
+>> createHash(알고리즘) : 비밀번호 해시 알고리즘
+ㄴ md5, sha1, sha256, sha512등이 가능하지만 md5, sha1은 취약점이 있어 사용하면 안됨
+ㄴ 현재는 sha512정도로 충분
+>> update(문자열) : 변환할 문자열
+>> digest(인코딩) : 인코딩할 알고리즘 넣어줌 base64, hex가 있는데 base64 많이 사용함
+console.log('base64 : ', crypto.createHash('sha512').update('비밀번호').digest('base64'));
+
+>> pbkdf2, bcrypt, scrypt 알고리즘도 있음 => bcrypt를 많이 사용함
+>> pbkdf2 알고리즘 : 잘 안씀
+인수 : 비밀번호, salt(해독을 어렵게하기 위해 추가된 것), 반복 횟수, 출력바이트, 알고리즘
+crypto.randomBytes(64, (err, buf) => {
+    const salt = buf.toString('base64');
+    console.log(salt);
+    crypto.pbkdf2('비밀번호', salt, 100000, 64, 'sha512', (err, key) => {
+        console.log('password', key.toString('base64'));
+    });
+});
+
+<양방향 암호화 : 암호,복호 가능>
+>> 대칭형 암호화
+>> 1) createCipheriv -> 이것보다 남이 만든 암호화 crypto.js를 쓰는 것을 추천함
+
+>> 단방향 : SHA512 또는 256
+>> 양방향 : AES방식
+>> 비대칭 : 프론트,서버 다른키 가지면서 암호화하며 복호화하는 것 https가 이런 것
+ㄴ RSA방식 추천
+
+현업에서 키, 비밀번호 관리는 git에 올리면 안됨, 
+aws kms가 있는데 이런 것을 쓰는 것도 있음
+주기적으로 바꾸어주는 자동화서비스들도 있음
+높은 사람들 이직할 때 키를 가지고 나갈 수도 있어서 조심해야 함
+--> 암호화는 깊은 공부가 필요함
+
