@@ -1,0 +1,4 @@
+/// worker_threads
+worker_threads.js -> prime.js  -> prime_worker.js 순으로 파일 생성
+멀티스레드를 사용하는게 좋긴 함 그래야 시간이 빠름
+
