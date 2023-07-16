@@ -1,6 +1,6 @@
 const http = require('http');
 const fs = require('fs').promises;
-const path = require('path');
+const path = require('path'); // ./ 현재 디렉토리 path 가져오기
 
 const users = {}; // 데이터 저장용
 
@@ -39,6 +39,7 @@ http.createServer(async (req, res) => {
           const { name } = JSON.parse(body);
           const id = Date.now();
           users[id] = name;
+          // 201번 : 생성됨에 의미
           res.writeHead(201, { 'Content-Type': 'text/plain; charset=utf-8' });
           res.end('등록 성공');
         });
