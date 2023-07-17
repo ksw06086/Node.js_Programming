@@ -40,7 +40,7 @@ http.createServer(async (req, res) => {
         res.end(`${session[cookies.session].name}님 안녕하세요.`);
     } else {
         try{
-            const data = await fs.readFile(path.join(__dirname, 'cookie2.html');
+            const data = await fs.readFile(path.join(__dirname, 'cookie2.html'));
             res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
             res.end(data);
         } catch (err) {
