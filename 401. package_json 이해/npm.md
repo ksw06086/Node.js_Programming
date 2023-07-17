@@ -28,4 +28,13 @@
 3. npm i -D 패키지명 : dependencies가 아닌 devDependencies에 추가됨
    (devDependencies는 개발할 때만 쓰이는 패키지를 저장해둠)
 
+# node modules
+- 다운받은 package들 모음집
+- node modules 폴더가 양이 상당하기 때문에 배포할 때에는 삭제 후 배포 -> 배포된 서버에서 npm i로 dependencies한 것들 다운받게 하는 방향으로 많이 함
+- 배포하는 서버 중 폐쇄망이 있는데 그런 곳은 npm i 명령어를 사용 못하므로 삭제 안하고 함께 배포함
 
+# npm i -g rimraf(rimraf) -> npm i -D rimraf(npx rimraf)
+- -g : 전역설치(dependencies에 기록이 안됨, 명령어로 써줄 수 있는 친구들)
+- rimraf : 이 명령어는 해당 폴더/파일 지우는 명령어
+- 전역설치의 단점 : dependence에 기록이 안되니 프로젝트를 관리하는 사람이 다른 사람으로 넘어갔을 때 package.json만 보고 rimraf가 없으니 사용되고 있는지 모름 
+* 그래서 요즘은 -D로 개발용으로 설치해서 보여주게 한 후, npx를 명령어 앞에 적어주면 가능
