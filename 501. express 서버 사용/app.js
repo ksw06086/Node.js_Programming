@@ -1,4 +1,5 @@
 const express = require('express'); // 안에 보면 http 서버를 쓰고 있음
+const path = require('path');
 
 const app = express();
 
@@ -8,7 +9,7 @@ const app = express();
 app.set('port', process.env.PORT || 3000); // 서버에 포트라는 속성의 값을 3000으로 넣음
 
 app.get('/', (req, res) => {
-    res.send('hello express');
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.post('/', (req, res) => {
