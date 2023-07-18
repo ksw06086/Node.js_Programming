@@ -1,5 +1,7 @@
 const express = require('express'); // 안에 보면 http 서버를 쓰고 있음
 const path = require('path');
+const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -7,6 +9,15 @@ const app = express();
 // 포트 변경하고 싶을 때 -> SET PORT=포트번호
 // (위험 - 앞으로 계속 process.env.PORT는 해당 포트번호가 됨, 다른 프로그램 실행 시 문제 발생 가능성 큼)
 app.set('port', process.env.PORT || 3000); // 서버에 포트라는 속성의 값을 3000으로 넣음
+
+// morgan
+app.use(morgan('dev'));
+// cookie-parser
+app.use(cookieParser());
+// body-parser : restServer.js의 body 변수 부분이 편해짐
+// 이걸 쓰면 알아서 데이터가 parse가 됨, 그래서 바로 req.body.name을 사용가능
+app.use(express.json());
+app.use(express.urlencoded({ extended : true }));
 
 // 미들웨어 사용
 app.use((req, res, next) => {
