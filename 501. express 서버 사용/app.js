@@ -9,7 +9,6 @@ const app = express();
 app.set('port', process.env.PORT || 3000); // 서버에 포트라는 속성의 값을 3000으로 넣음
 
 // 미들웨어 사용
-// 에러처리 미들웨어시 매개변수가 4개여야하는 조건이 충족되어야함
 app.use((req, res, next) => {
     console.log("모든 요청에 실행하고 싶어요.");
     next();
@@ -31,6 +30,13 @@ app.get('/about', (req, res) => {
 app.get('/category/:name', (req, res) => {
     res.send(`hello ${req.params.name}`);
 });
+
+// 에러처리 미들웨어로 하는 것
+// 에러처리 미들웨어시 매개변수가 4개여야하는 조건이 충족되어야함
+app.use((err, req, res, next) => {
+    console.error(err);
+    res.send("에러났지롱, 근데 안알려주지롱");
+})
 
 // 여기서 가져와서 사용함(3000 포트를 의미)
 app.listen(app.get('port'), () => {

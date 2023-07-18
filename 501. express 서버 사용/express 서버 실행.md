@@ -11,3 +11,9 @@
 
 # express.sendFile(html파일)
 - 파일 내용 가져오기
+
+# res.send()
+- res.status(200).send() 즉, status(200)이 생략되어있음
+
+# res.setHeader( { 'Content-Type': 'application/json' })
+- res.writeHeader()와 같은 기능 status만 없음
