@@ -12,6 +12,12 @@ app.set('port', process.env.PORT || 3000); // 서버에 포트라는 속성의 �
 app.use((req, res, next) => {
     console.log("모든 요청에 실행하고 싶어요.");
     next();
+}, (req, res, next) => {
+    try {
+        throw new Error("에러야~~~");
+    } catch (error) {
+        next(error);
+    }
 })
 
 app.get('/', (req, res) => {

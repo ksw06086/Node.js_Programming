@@ -17,3 +17,5 @@
 
 # res.setHeader( { 'Content-Type': 'application/json' })
 - res.writeHeader()와 같은 기능 status만 없음
+
+# res.json()은 리턴이 아니고 응답을 보낼 뿐이어서 다음 코드도 실행이 됨
