@@ -2,7 +2,7 @@ const express = require('express'); // 안에 보면 http 서버를 쓰고 있�
 const path = require('path');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
-
+const session = require('express-session');
 const app = express();
 
 // process.env.PORT : 해당 프로세스의 포트번호 불러옴
@@ -10,13 +10,18 @@ const app = express();
 // (위험 - 앞으로 계속 process.env.PORT는 해당 포트번호가 됨, 다른 프로그램 실행 시 문제 발생 가능성 큼)
 app.set('port', process.env.PORT || 3000); // 서버에 포트라는 속성의 값을 3000으로 넣음
 
-// morgan
-app.use(morgan('dev'));
-// static : 여기서 파일을 찾으면 아래가 실행이 안됨(body-parser보단 위에 있음)
-//          로그인 한 사람한테만 파일 그림 보여주거나 할 때에는 cookieParser 아래에 둠
-app.use('/', express.static(__dirname + 'public'));
-// cookie-parser
-app.use(cookieParser());
+app.use(morgan('dev')); // morgan
+app.use('/', express.static(__dirname + 'public')); // static
+app.use(cookieParser('zerochopassword')); // cookie-parser
+app.use(session({
+    resave: false,
+    saveUninitialized: false,
+    secret: 'zerochopassword',
+    cookie: {
+        httpOnly: true,
+    },
+    name: 'connect.sid',
+}));
 // body-parser : restServer.js의 body 변수 부분이 편해짐
 // 이걸 쓰면 알아서 데이터가 parse가 됨, 그래서 바로 req.body.name을 사용가능
 app.use(express.json());
@@ -35,6 +40,7 @@ app.use((req, res, next) => {
 })
 
 app.get('/', (req, res) => {
+    req.session
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 

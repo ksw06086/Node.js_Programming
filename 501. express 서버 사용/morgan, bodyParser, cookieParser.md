@@ -14,7 +14,7 @@
 - 사용 시 req.cookies이면 자동으로 객체화 되어있음
 - set : res.cookie / remove : res.clearCookie
 - signedCookies
-+ cookieParser('암호')를 넣으면 쿠키를 암호화할 수 있음
++ cookieParser('쿠키암호화')를 넣으면 쿠키를 암호화할 수 있음
 - req.cookies; // { mycookie: 'test' }
   req.signedCookies;
   // 'Set-Cookie': `name=${encodeURIComponent(name)}; Expires=${expires.toGMTString()}; HttpOnly; Path=/`,
