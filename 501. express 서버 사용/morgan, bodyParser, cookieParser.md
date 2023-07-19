@@ -34,7 +34,7 @@
 - setting 
 + app.use(express.json()); - json 보낼 때
 + app.use(express.urlencoded({ extended : true })); - form 보낼 때
-+ + 이미지 파일을 보낼 때는 적용이 안되어서 multer?를 사용함
++ + 이미지 파일을 보낼 때는 적용이 안되어서 multer 패키지를 사용함
 + + true : qs, false : querystring / qs가 querystring보다 더 강력함
 - restServer.js의 body 변수 부분이 편해짐
 - 이걸 쓰면 알아서 데이터가 parse가 됨, 그래서 바로 req.body.name을 사용가능
