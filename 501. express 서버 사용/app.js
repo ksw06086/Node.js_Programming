@@ -12,6 +12,9 @@ app.set('port', process.env.PORT || 3000); // 서버에 포트라는 속성의 �
 
 // morgan
 app.use(morgan('dev'));
+// static : 여기서 파일을 찾으면 아래가 실행이 안됨(body-parser보단 위에 있음)
+//          로그인 한 사람한테만 파일 그림 보여주거나 할 때에는 cookieParser 아래에 둠
+app.use('/', express.static(__dirname + 'public'));
 // cookie-parser
 app.use(cookieParser());
 // body-parser : restServer.js의 body 변수 부분이 편해짐
