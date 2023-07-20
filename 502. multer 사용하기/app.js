@@ -49,9 +49,11 @@ const upload = multer({
   }),
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB이하 파일만 업로드 가능
 });
+
 app.get('/upload', (req, res) => {
   res.sendFile(path.join(__dirname, 'multipart.html'));
 });
+
 // 미들웨어 2개 있는 것 : 업로드 미들웨어 후 (req, res)=>{} 실행
 app.post('/upload', upload.single('image'), (req, res) => {
   console.log(req.file);
