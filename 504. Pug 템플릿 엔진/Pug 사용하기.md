@@ -1,6 +1,6 @@
 # Pug 사용하기
 - app.set('views', path.join(__dirname, 'views'));
-+ views 폴더를 만들고 지정해줌
++ views 폴더 지정해줌
 - app.set('view engine', 'pug');
 + pug 확장자를 가진 파일들 읽기
 
