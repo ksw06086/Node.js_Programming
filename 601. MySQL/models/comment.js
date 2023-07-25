@@ -24,6 +24,12 @@ class Comment extends Sequelize.Model {
       collate: 'utf8mb4_general_ci',
     });
   }
+
+  // 관계 정의
+  static associate(db) {
+    // 댓글은 사용자에게 속해있다.(belongsTo)
+    db.Comment.belongsTo(db.User, { foreignKey: 'commenter', targetKey: 'id' });
+  }
 };
 
 module.exports = Comment;
