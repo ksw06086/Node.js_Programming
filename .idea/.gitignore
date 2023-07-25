@@ -6,4 +6,5 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
-/node_modules/
+# nodejs node_modules 폴더 내 파일 무시
+node_modules/
