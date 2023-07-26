@@ -15,9 +15,11 @@ db.sequelize = sequelize;
 // 만든 Model db에 추가해주기
 db.User = User;
 db.Comment = Comment;
+
 User.initiate(sequelize); // model과 mysql과 연결
 Comment.initiate(sequelize); // model과 mysql과 연결
-User.associate(sequelize); // model 사이의 관계를 mysql과 연결
-Comment.associate(sequelize); // model 사이의 관계를 mysql과 연결
+
+User.associate(db); // model 사이의 관계를 mysql과 연결
+Comment.associate(db); // model 사이의 관계를 mysql과 연결
 
 module.exports = db;
